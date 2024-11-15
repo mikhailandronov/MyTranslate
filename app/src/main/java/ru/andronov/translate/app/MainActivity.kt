@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import ru.andronov.translate.app.ui.screen.TranslationScreen
 import ru.andronov.translate.app.ui.theme.MyTranslateTheme
 
 class MainActivity : ComponentActivity() {
@@ -61,7 +62,7 @@ class MainActivity : ComponentActivity() {
                 startDestination = "translate"
             ) {
                 composable("history") { }
-                composable("translate") { }
+                composable("translate") { TranslationScreen() }
                 composable("favourites") { }
             }
         }
