@@ -10,6 +10,11 @@ activityCompose = "1.9.3"
 composeBom = "2024.10.01"
 koin-bom = "3.5.0"
 navigation = "2.8.3"
+retrofit = "2.11.0"
+kotlinxSerializationJson = "1.6.3"
+okhttp = "4.12.0"
+room = "2.6.1"
+ktor = "3.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -36,8 +41,26 @@ koin-androidx-compose = {module = "io.insert-koin:koin-androidx-compose"}
 # Navigation
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
+### Network
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-content-negotiation =  { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json  =  { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-ser = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+
+### Room
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+androidx-room = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref="kotlin" }
 
