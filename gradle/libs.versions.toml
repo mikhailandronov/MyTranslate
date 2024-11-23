@@ -1,20 +1,18 @@
 [versions]
 agp = "8.7.2"
-kotlin = "2.0.0"
+kotlin = "2.0.20"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
-composeBom = "2024.10.01"
+composeBom = "2024.11.00"
 koin-bom = "3.5.0"
-navigation = "2.8.3"
-retrofit = "2.11.0"
-kotlinxSerializationJson = "1.6.3"
-okhttp = "4.12.0"
+navigation = "2.8.4"
 room = "2.6.1"
 ktor = "3.0.1"
+slf4j-android = "1.7.36"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,16 +39,13 @@ koin-androidx-compose = {module = "io.insert-koin:koin-androidx-compose"}
 # Navigation
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
-### Network
+### Network (Ktor)
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-content-negotiation =  { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 ktor-serialization-kotlinx-json  =  { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
-
-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
-retrofit-ser = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
-kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+slf4j-android  =  { group = "org.slf4j", name = "slf4j-android", version.ref = "slf4j-android" }
 
 ### Room
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
