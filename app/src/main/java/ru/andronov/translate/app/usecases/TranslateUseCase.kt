@@ -4,7 +4,6 @@ enum class LanguageCode(val code: String) {
     AUTO_DETECT(""),
     ENGLISH("en"),
     RUSSIAN("ru"),
-    TURKISH("ru"),
 }
 
 interface TranslationService{

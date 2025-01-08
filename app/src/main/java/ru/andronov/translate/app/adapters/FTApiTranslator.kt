@@ -70,9 +70,11 @@ class FTApiTranslator(val endpoint: URL) : TranslationService {
             }
         }
 
-        return "Переведенная строка с сервиса ${endpoint.host}.\n" +
-                "Перевод c ${sourceLang.code} на ${targetLang.code}.\n" +
-                result
+//        return "Переведенная строка с сервиса ${endpoint.host}.\n" +
+//                "Перевод c ${sourceLang.code} на ${targetLang.code}.\n" +
+//                result
+
+        return result
     }
 }
 

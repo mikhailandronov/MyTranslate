@@ -2,7 +2,6 @@ package ru.andronov.translate.app.ui.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -28,9 +27,12 @@ class TranslationViewModel(
         _uiState.update {
             it.copy(
                 sourceLang = it.targetLang,
-                targetLang = it.sourceLang
+                targetLang = it.sourceLang,
+                inputText = it.translatedText,
+                translatedText = it.inputText
             )
         }
+        translate()
     }
 
     fun translate() {
