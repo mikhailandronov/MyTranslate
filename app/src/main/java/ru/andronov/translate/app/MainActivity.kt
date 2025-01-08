@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -29,6 +30,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import ru.andronov.translate.app.ui.screen.HistoryScreen
 import ru.andronov.translate.app.ui.screen.TranslationScreen
 import ru.andronov.translate.app.ui.theme.MyTranslateTheme
 
@@ -54,14 +56,15 @@ class MainActivity : ComponentActivity() {
             bottomBar = {
                 BottomNavigationBar(navController)
             },
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize()
 
             ) { innerPadding ->
             NavHost(
                 navController = navController,
-                startDestination = "translate"
+                startDestination = "translate",
+                modifier = Modifier.padding(innerPadding)
             ) {
-                composable("history") { }
+                composable("history") { HistoryScreen() }
                 composable("translate") { TranslationScreen() }
                 composable("favourites") { }
             }
@@ -77,30 +80,23 @@ class MainActivity : ComponentActivity() {
             ImageVector.vectorResource(R.drawable.ic_fav),
         )
 
-        NavigationBar(
-            content = {
-                destinations.forEachIndexed { index, item ->
-                    BottomNavigationItem(
-                        icon = {
-                            Icon(
-                                imageVector = icons[index],
-                                contentDescription = item.capitalize(Locale.current),
-                            )
-                        },
-                        label = {
-                            Text(
-                                text = item.capitalize(Locale.current)
-                            )
-                        },
-                        selected = selectedItem == index,
-                        onClick = {
-                            selectedItem = index
-                            navController.navigate(item)
-                        }
+        NavigationBar(content = {
+            destinations.forEachIndexed { index, item ->
+                BottomNavigationItem(icon = {
+                    Icon(
+                        imageVector = icons[index],
+                        contentDescription = item.capitalize(Locale.current),
                     )
-                }
+                }, label = {
+                    Text(
+                        text = item.capitalize(Locale.current)
+                    )
+                }, selected = selectedItem == index, onClick = {
+                    selectedItem = index
+                    navController.navigate(item)
+                })
             }
-        )
+        })
     }
 
     @Composable
