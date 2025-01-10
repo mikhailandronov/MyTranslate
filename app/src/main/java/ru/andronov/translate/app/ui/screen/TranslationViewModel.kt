@@ -6,11 +6,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import ru.andronov.translate.app.usecases.HistoryUseCase
 import ru.andronov.translate.app.usecases.LanguageCode
 import ru.andronov.translate.app.usecases.TranslateUseCase
 
 class TranslationViewModel(
-    private val translateUseCase: TranslateUseCase
+    private val translateUseCase: TranslateUseCase,
+    private val saveHistoryUseCase: HistoryUseCase
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(TranslationUiState())
     val uiState: StateFlow<TranslationUiState> = _uiState
@@ -27,12 +29,9 @@ class TranslationViewModel(
         _uiState.update {
             it.copy(
                 sourceLang = it.targetLang,
-                targetLang = it.sourceLang,
-                inputText = it.translatedText,
-                translatedText = it.inputText
+                targetLang = it.sourceLang
             )
         }
-        translate()
     }
 
     fun translate() {
@@ -47,6 +46,11 @@ class TranslationViewModel(
             _uiState.update {
                 it.copy(translatedText = result)
             }
+
+            saveHistoryUseCase.save(
+                _uiState.value.inputText,
+                _uiState.value.translatedText
+            )
         }
     }
 }

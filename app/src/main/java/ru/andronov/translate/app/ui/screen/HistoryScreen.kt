@@ -31,7 +31,7 @@ fun HistoryScreen(
         TopAppBar(title = { Text("History") })
 
         LazyColumn(modifier = Modifier.padding(horizontal = 16.dp)) {
-            items(historyList.value){ history ->
+            items(historyList.value) { history ->
                 HistoryItem(history)
             }
         }

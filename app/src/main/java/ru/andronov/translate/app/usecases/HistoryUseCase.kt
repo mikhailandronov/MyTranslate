@@ -1,6 +1,6 @@
 package ru.andronov.translate.app.usecases
 
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.Flow
 import java.util.Date
 
 data class TranslationHistory(
@@ -12,7 +12,7 @@ data class TranslationHistory(
 
 interface TranslationHistoryRepository {
     suspend fun insertHistory(historyRecord: TranslationHistory)
-    fun getTranslationHistory(): List<TranslationHistory>
+    fun getTranslationHistory(): Flow<List<TranslationHistory>>
 }
 
 class HistoryUseCase(
@@ -27,6 +27,7 @@ class HistoryUseCase(
         )
     }
 
-    fun getHistory() = flowOf(repository.getTranslationHistory())
+    fun getHistory() = repository.getTranslationHistory()
+
 }
 
