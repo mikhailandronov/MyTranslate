@@ -11,6 +11,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.capitalize
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
 
@@ -31,7 +33,7 @@ fun TranslationScreen(viewModel: TranslationViewModel = koinViewModel()) {
         )
 
         TextInput(
-            language = uiState.value.sourceLang,
+            language = uiState.value.sourceLang.toString().lowercase().capitalize(Locale.current),
             text = uiState.value.inputText,
             onTextChange = { viewModel.updateInputText(it) },
             onClearText = { viewModel.clearInputText() }
@@ -39,10 +41,14 @@ fun TranslationScreen(viewModel: TranslationViewModel = koinViewModel()) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        TranslateButton(onTranslate = { viewModel.translate() })
+        TranslateButton(
+            onTranslate = { viewModel.translate() },
+            onSwap = { viewModel.swapLanguages() }
+        )
 
-        uiState.value.translatedText.let {
-            TranslationResult(it)
-        }
+        TranslationResult(
+            language = uiState.value.targetLang.toString().lowercase().capitalize(Locale.current),
+            result = uiState.value.translatedText
+        )
     }
 }
